@@ -24,8 +24,8 @@
 }
 
 .spinner {
-    width: 75px;
-    height: 75px;
+    width: 2.5rem;
+    height: 2.5rem;
     display: inline-block;
     border-width: 2px;
     border-color: rgb(27, 3, 3);
