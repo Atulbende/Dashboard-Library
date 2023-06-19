@@ -4,6 +4,10 @@ import { Screen } from '../common/notifications/toastify';
 export default function Login() {
     const [loginAnim,setLoginAnim]=useState('');
     const [signupAnim,setSignupAnim]=useState('d-none');
+    const [Signup,setSingup]=useState({Signup_Email:'',Signup_UserName:'',Signup_Password:''});
+    function Signups(e){
+        setSingup(prev=>({...prev,[e.target.name]:e.target.value}));
+    }
   return (
         <div className='container'>
             <div className={`login ${loginAnim}`}>
@@ -13,12 +17,12 @@ export default function Login() {
                 </section>
                 <section className='login-body'>
                     <h1>LOGIN</h1>                  
-                    <input tabindex="1" name="UserName" type='text' placeholder='User Name' autoComplete='false'></input>
-                    <input tabindex="2" name="Password" type='password' placeholder='Passowrd'></input>
+                    <input name="UserName" type='text' placeholder='User Name' autoComplete='false'></input>
+                    <input  name="Password" type='password' placeholder='Passowrd'></input>
                 </section>
                 <section className='login-footer'>
                     <button type='button' className='login-btn' onClick={()=>{  Screen.Notification.Success(Screen.Notification.Msg.Def1);}} >LOGIN</button>
-                    <button type='button' className='sign-up-btn' onClick={()=>{setLoginAnim('login-swipright');setSignupAnim('signup-swipright');Screen.LoaderON();}}>SIGN UP</button>
+                    <button type='button' className='sign-up-btn' onClick={()=>{setLoginAnim('login-swipright');setSignupAnim('signup-swipright');}}>SIGN UP</button>
                     <span> <a href='www.google.com' target='_blank'>Forget Passowrd</a></span>
                 </section>
             </div>
@@ -28,9 +32,9 @@ export default function Login() {
                             <span>Please signup to continue</span>
                         </section>
                 <section className='login-body'>                 
-                    <input tabindex="6" name="Email" type='email' placeholder='Email'></input>
-                    <input tabindex="7" name="UserName" type='text' placeholder='User Name'></input>
-                    <input tabindex="8" name="Password" type='password' placeholder='Passowrd'></input>
+                    <input name="Signup_Email" type='email' placeholder='Email' onChange={Signups}></input>
+                    <input name="Signup_UserName" type='text' placeholder='User Name' onChange={Signups}></input>
+                    <input name="Signup_Password" type='password' placeholder='Passowrd' onChange={Signups}></input>
                 </section>
                 <section className='login-footer'>
                     <button type='button' className='sign-up-btn' >SIGN UP</button>
