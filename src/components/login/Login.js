@@ -1,12 +1,20 @@
 import React, { useState } from 'react'
 import '../login/login.css'
 import { Screen } from '../common/notifications/toastify';
+import { Validation } from '../utils/login/validation';
+import {Api} from '../../api/axios'
 export default function Login() {
     const [loginAnim,setLoginAnim]=useState('');
     const [signupAnim,setSignupAnim]=useState('d-none');
     const [Signup,setSingup]=useState({Signup_Email:'',Signup_UserName:'',Signup_Password:''});
-    function Signups(e){
+    function SignupsHandle(e){
         setSingup(prev=>({...prev,[e.target.name]:e.target.value}));
+    }
+    async  function  SignUpSave(){
+       if(Validation.Valid(Signup)){
+         const res=await Api('POST','/signup',Signup);
+         console.log(res);
+       }
     }
   return (
         <div className='container'>
@@ -32,12 +40,12 @@ export default function Login() {
                             <span>Please signup to continue</span>
                         </section>
                 <section className='login-body'>                 
-                    <input name="Signup_Email" type='email' placeholder='Email' onChange={Signups}></input>
-                    <input name="Signup_UserName" type='text' placeholder='User Name' onChange={Signups}></input>
-                    <input name="Signup_Password" type='password' placeholder='Passowrd' onChange={Signups}></input>
+                    <input name="Signup_Email" type='email' placeholder='Email' onChange={SignupsHandle}></input>
+                    <input name="Signup_UserName" type='text' placeholder='User Name' onChange={SignupsHandle}></input>
+                    <input name="Signup_Password" type='password' placeholder='Passowrd' onChange={SignupsHandle}></input>
                 </section>
                 <section className='login-footer'>
-                    <button type='button' className='sign-up-btn' >SIGN UP</button>
+                    <button type='button' className='sign-up-btn' onClick={SignUpSave} >SIGN UP</button>
                     <button type='button' className='login-btn'  onClick={()=>{setLoginAnim('login-swipleft');setSignupAnim('signup-swipleft')}}>LOGIN</button>
                </section>
             </div>
