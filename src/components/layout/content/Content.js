@@ -12,10 +12,10 @@ export default function Content() {
       <div  className='content-form'>
         <SelectFields col="col-50"/>
         <SelectFields col="col-50"/>
-        <TextFields col="col-25"/>
-        <TextFields col="col-25"/>
-        <TextFields col="col-25"/>
-        <TextFields col="col-25"/>
+        <TextFields col="col-15"/>
+        <TextFields col="col-33"/>
+        <TextFields col="col-33"/>
+        <TextFields col="col-15"/>
         <TextFields col="col-25"/>
         <TextFields col="col-25"/>
         <TextFields col="col-25"/>
