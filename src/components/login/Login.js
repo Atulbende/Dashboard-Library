@@ -13,7 +13,21 @@ export default function Login() {
     async  function  SignUpSave(){
        if(Validation.Valid(Signup)){
          const res=await Api('POST','/signup',Signup);
-         console.log(res);
+         console.log(res.data);
+         if(res.data==1){
+            Screen.LoaderON();
+            setTimeout(()=>{
+                Screen.LoaderOff();
+                Screen.Notification.Success("Congratulations you have successfully registered");
+                setLoginAnim('login-swipleft');setSignupAnim('signup-swipleft')
+            },3000)
+           
+         }else if(res.data==-1){
+            Screen.Notification.Error("Email-Id Already registered please enter diffrent Email-Id");
+         }else{
+            Screen.Notification.Error(res.data);
+         }
+         
        }
     }
   return (
